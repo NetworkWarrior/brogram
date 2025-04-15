@@ -3,7 +3,7 @@ import WorkoutCard from "./WorkoutCard.jsx"
 
 export default function Grid() {
     const isLocked = true
-    const selectedWorkout = 0
+    const selectedWorkout = 4
 
     return (
         <div className="training-grid-plan">
@@ -15,10 +15,20 @@ export default function Grid() {
                 'Legs'
 
                 const trainingPlan = training_plan[workoutIndex]
+                const dayNum = ((workoutIndex / 8) <= 1) ? '0' + (workoutIndex + 1) : workoutIndex + 1
+                const icon =  workoutIndex % 3 === 0 ? (
+                    <i className='fa-solid fa-dumbbell'></i>
+                ) : (
+                    workout % 3 === 1 ? (
+                        <i className='fa-solid fa-weight-hanging'></i>
+                    ) : (
+                        <i className="fa-solid fa-bolt"></i>
+                    )
+                )
 
                 if (workoutIndex === selectedWorkout) {
                     return (
-                        <WorkoutCard key={workoutIndex}/>
+                        <WorkoutCard key={workoutIndex} trainingPlan={trainingPlan} type={type} workoutIndex={workoutIndex} icon={icon} dayNum={dayNum}/>
                     )
                 }
 
@@ -26,21 +36,11 @@ export default function Grid() {
                 return (
                     <button className={'card plan-card  ' + (isLocked ? 'inactive' : '')} key={workoutIndex}>
                         <div className='plan-card-header'>
-                            <p>Day {((workoutIndex / 8) <= 1) ? '0' + (workoutIndex + 1) : workoutIndex + 1}</p>
+                            <p>Day {dayNum}</p>
                         </div>
                         {isLocked ? (
                             <i className="fa-solid fa-lock"></i>
-                        ) : (
-                            workoutIndex % 3 === 0 ? (
-                                <i className='fa-solid fa-dumbbell'></i>
-                            ) : (
-                                workout % 3 === 1 ? (
-                                    <i className='fa-solid fa-weight-hanging'></i>
-                                ) : (
-                                    <i className="fa-solid fa-bolt"></i>
-                                )
-                            )
-                        )}
+                        ) : (icon)}
                         <div className='plan-card-header'>
                             <h4><b>{type}</b></h4>
                         </div>
