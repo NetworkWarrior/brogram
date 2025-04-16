@@ -1,10 +1,20 @@
+import { useState } from 'react'
 import {workoutProgram as training_plan} from '../utils/index.js'
 import WorkoutCard from "./WorkoutCard.jsx"
 
 export default function Grid() {
-    const isLocked = true
-    const selectedWorkout = 4
+    const [savedWorkouts, setSavedWorkouts] = useState(null)
+    const [selectedWorkout, setSelectedWorkout] = useState( null)
+    const completedWorkouts = []
+    const isLocked = false
 
+    function handleSave(index, data) {
+
+    }
+
+    function handleComplete(index, data){
+
+    }
     return (
         <div className="training-plan-grid">
             {Object.keys(training_plan).map((workout, workoutIndex) => {
@@ -28,13 +38,15 @@ export default function Grid() {
 
                 if (workoutIndex === selectedWorkout) {
                     return (
-                        <WorkoutCard key={workoutIndex} trainingPlan={trainingPlan} type={type} workoutIndex={workoutIndex} icon={icon} dayNum={dayNum}/>
+                        <WorkoutCard handleSave={handleSave} handleComplete={handleComplete} key={workoutIndex} trainingPlan={trainingPlan} type={type} workoutIndex={workoutIndex} icon={icon} dayNum={dayNum}/>
                     )
                 }
 
 
                 return (
-                    <button className={'card plan-card  ' + (isLocked ? 'inactive' : '')} key={workoutIndex}>
+                    <button onClick={() => {
+                        setSelectedWorkout(workoutIndex)
+                    }} className={'card plan-card  ' + (isLocked ? 'inactive' : '')} key={workoutIndex}>
                         <div className='plan-card-header'>
                             <p>Day {dayNum}</p>
                         </div>
