@@ -10,7 +10,7 @@ export default function WorkoutCard(props) {
     const [weights, setWeights] = useState(savedWeights || {})
 
     function handleAddWeight(title, weight) {
-        console.log(title, weight)
+        (title, weight)
 
         const newObj = {
             ...weights,
@@ -37,7 +37,6 @@ export default function WorkoutCard(props) {
                 </div>
             </div>
 
-            {/* Warmup Section */}
             <div className="workout-grid">
                 <div className="exercise-name">
                     <h4>Warmup</h4>
@@ -66,7 +65,6 @@ export default function WorkoutCard(props) {
                 ))}
             </div>
 
-            {/* Workout Section */}
             <div className="workout-grid">
                 <div className="exercise-name">
                     <h4>Workout</h4>
@@ -105,7 +103,7 @@ export default function WorkoutCard(props) {
                 }}>Save & Exit</button>
                 <button onClick={() => {
                     handleComplete(workoutIndex, {weights})
-                }} disabled={true}>Complete</button>
+                }} disabled={Object.keys(weights).length !== workout.length}>Complete</button>
             </div>
         </div>
     )
