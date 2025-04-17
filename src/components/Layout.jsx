@@ -8,7 +8,7 @@ export default function Layout(props) {
     )
     const footer = (
         <footer>
-            <p>Built by <a href="https://www.my_usernam.com" target="_blank">Ismail</a></p>
+            <p>Built by <a href="https://ismailabdumajidov.netlify.app/" target="_blank">Ismail</a></p>
         </footer>
     )
 
